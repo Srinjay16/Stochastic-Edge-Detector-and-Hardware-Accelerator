@@ -12,13 +12,40 @@ Both Sobel and Prewitt operators are capable of running within a tight **100 MHz
 
 ## 📈 Performance Benchmarks
 
-When synthesized and implemented against a standard deterministic baseline on the exact same Artix-7 fabric, the StEdge accelerator achieves massive architectural efficiency gains while maintaining visual edge-fidelity:
+## 📊 Implementation Results (Basys 3)
 
-* **~84% Reduction** in Logic Utilization (LUTs)
-* **~68% Reduction** in Block RAM (BRAM) footprint
-* **~17% Lower** On-Chip Power Consumption (~0.209 W vs. 0.251 W baseline)
+The following metrics were captured post-implementation in Vivado 2024.2, targeting the Artix-7 `xc7a35tcpg236-1` fabric. The design proves to be highly resource-efficient and comfortably meets all timing constraints.
 
-*For detailed algebraic reformulations, mathematical derivations of the bit-interleaved accumulator trick, and absolute hardware baseline figures, please refer to the companion paper: `Hardware_StoBel.pdf`.*
+### Resource Utilization
+| Resource | Utilization | Available | Utilization % |
+| :--- | :--- | :--- | :--- |
+| **LUT** | 178 | 20,800 | 0.86% |
+| **FF** | 170 | 41,600 | 0.41% |
+| **BRAM** | 9 | 50 | 18.00% |
+| **IO** | 25 | 106 | 23.58% |
+| **BUFG** | 3 | 32 | 9.38% |
+| **MMCM** | 1 | 5 | 20.00% |
+
+### Timing Summary
+| Metric | Setup | Hold | Pulse Width |
+| :--- | :--- | :--- | :--- |
+| **Worst Slack** | 3.015 ns (WNS) | 0.091 ns (WHS) | 3.000 ns (WPWS) |
+| **Total Slack** | 0.000 ns (TNS) | 0.000 ns (THS) | 0.000 ns (TPWS) |
+| **Failing Endpoints**| 0 | 0 | 0 |
+| **Total Endpoints** | 507 | 507 | 187 |
+
+### Power Consumption
+* **Total On-Chip Power:** 0.196 W
+* **Junction Temperature:** 26.0°C
+* **Thermal Margin:** 59.0°C (11.7 W)
+
+**On-Chip Power Breakdown:**
+* **Dynamic Power:** 0.123 W (63%)
+  * *MMCM:* 0.106 W (86% of dynamic)
+  * *I/O:* 0.014 W (9% of dynamic)
+  * *Clocks:* 0.002 W (2% of dynamic)
+  * *Signals / Logic / BRAM:* < 0.001 W each
+* **Device Static Power:** 0.072 W (37%)
 
 ---
 
