@@ -1,0 +1,410 @@
+#-----------------------------------------------------------
+# Vivado v2024.2 (64-bit)
+# SW Build 5239630 on Fri Nov 08 22:35:27 MST 2024
+# IP Build 5239520 on Sun Nov 10 16:12:51 MST 2024
+# SharedData Build 5239561 on Fri Nov 08 14:39:27 MST 2024
+# Start of session at: Mon May 18 22:03:03 2026
+# Process ID         : 9652
+# Current directory  : D:/GIT REPO/Stochastic Edge Detector/Sobel/StEdge_Sobel_Basys3/StEdge_Sobel_Basys3.runs/synth_1
+# Command line       : vivado.exe -log top_wrapper.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source top_wrapper.tcl
+# Log file           : D:/GIT REPO/Stochastic Edge Detector/Sobel/StEdge_Sobel_Basys3/StEdge_Sobel_Basys3.runs/synth_1/top_wrapper.vds
+# Journal file       : D:/GIT REPO/Stochastic Edge Detector/Sobel/StEdge_Sobel_Basys3/StEdge_Sobel_Basys3.runs/synth_1\vivado.jou
+# Running On         : LAPTOP-SRINJAY
+# Platform           : Windows Server 2016 or Windows 10
+# Operating System   : 26200
+# Processor Detail   : 12th Gen Intel(R) Core(TM) i5-12450H
+# CPU Frequency      : 2496 MHz
+# CPU Physical cores : 8
+# CPU Logical cores  : 12
+# Host memory        : 16802 MB
+# Swap memory        : 7548 MB
+# Total Virtual      : 24351 MB
+# Available Virtual  : 2910 MB
+#-----------------------------------------------------------
+source top_wrapper.tcl -notrace
+Command: synth_design -top top_wrapper -part xc7a35tcpg236-1
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xc7a35t'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7a35t'
+INFO: [Device 21-403] Loading part xc7a35tcpg236-1
+INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 2 processes.
+INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
+INFO: [Synth 8-7075] Helper process launched with PID 18748
+---------------------------------------------------------------------------------
+Starting RTL Elaboration : Time (s): cpu = 00:00:08 ; elapsed = 00:00:08 . Memory (MB): peak = 1038.961 ; gain = 467.203
+---------------------------------------------------------------------------------
+INFO: [Synth 8-6157] synthesizing module 'top_wrapper' [D:/Digital Projects/StEdge_Basys3/StEdge_Basys3.srcs/sources_1/new/top_wrapper.v:22]
+INFO: [Synth 8-6157] synthesizing module 'clk_wiz_0' [D:/GIT REPO/Stochastic Edge Detector/Sobel/StEdge_Sobel_Basys3/StEdge_Sobel_Basys3.runs/synth_1/.Xil/Vivado-9652-LAPTOP-SRINJAY/realtime/clk_wiz_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'clk_wiz_0' (0#1) [D:/GIT REPO/Stochastic Edge Detector/Sobel/StEdge_Sobel_Basys3/StEdge_Sobel_Basys3.runs/synth_1/.Xil/Vivado-9652-LAPTOP-SRINJAY/realtime/clk_wiz_0_stub.v:6]
+WARNING: [Synth 8-7071] port 'reset' of module 'clk_wiz_0' is unconnected for instance 'clock_gen' [D:/Digital Projects/StEdge_Basys3/StEdge_Basys3.srcs/sources_1/new/top_wrapper.v:48]
+WARNING: [Synth 8-7023] instance 'clock_gen' of module 'clk_wiz_0' has 5 connections declared, but only 4 given [D:/Digital Projects/StEdge_Basys3/StEdge_Basys3.srcs/sources_1/new/top_wrapper.v:48]
+INFO: [Synth 8-6157] synthesizing module 'mkCameraResetClk' [D:/StEdge/Sobel/verilog_out/mkCameraResetClk.v:33]
+INFO: [Synth 8-6155] done synthesizing module 'mkCameraResetClk' (0#1) [D:/StEdge/Sobel/verilog_out/mkCameraResetClk.v:33]
+WARNING: [Synth 8-7071] port 'RDY_camera_reset' of module 'mkCameraResetClk' is unconnected for instance 'cam_rst' [D:/Digital Projects/StEdge_Basys3/StEdge_Basys3.srcs/sources_1/new/top_wrapper.v:63]
+WARNING: [Synth 8-7023] instance 'cam_rst' of module 'mkCameraResetClk' has 5 connections declared, but only 4 given [D:/Digital Projects/StEdge_Basys3/StEdge_Basys3.srcs/sources_1/new/top_wrapper.v:63]
+INFO: [Synth 8-6157] synthesizing module 'mkCaptureStarter' [D:/StEdge/Sobel/verilog_out/mkCaptureStarter.v:35]
+INFO: [Synth 8-6155] done synthesizing module 'mkCaptureStarter' (0#1) [D:/StEdge/Sobel/verilog_out/mkCaptureStarter.v:35]
+WARNING: [Synth 8-7071] port 'RDY_vsync_detected' of module 'mkCaptureStarter' is unconnected for instance 'starter' [D:/Digital Projects/StEdge_Basys3/StEdge_Basys3.srcs/sources_1/new/top_wrapper.v:68]
+WARNING: [Synth 8-7071] port 'RDY_capture_reset_out' of module 'mkCaptureStarter' is unconnected for instance 'starter' [D:/Digital Projects/StEdge_Basys3/StEdge_Basys3.srcs/sources_1/new/top_wrapper.v:68]
+WARNING: [Synth 8-7023] instance 'starter' of module 'mkCaptureStarter' has 8 connections declared, but only 6 given [D:/Digital Projects/StEdge_Basys3/StEdge_Basys3.srcs/sources_1/new/top_wrapper.v:68]
+INFO: [Synth 8-6157] synthesizing module 'mkCapture' [D:/StEdge/Sobel/verilog_out/mkCapture.v:42]
+INFO: [Synth 8-6155] done synthesizing module 'mkCapture' (0#1) [D:/StEdge/Sobel/verilog_out/mkCapture.v:42]
+WARNING: [Synth 8-7071] port 'RDY_data_Y' of module 'mkCapture' is unconnected for instance 'capture_inst' [D:/Digital Projects/StEdge_Basys3/StEdge_Basys3.srcs/sources_1/new/top_wrapper.v:79]
+WARNING: [Synth 8-7071] port 'RDY_address' of module 'mkCapture' is unconnected for instance 'capture_inst' [D:/Digital Projects/StEdge_Basys3/StEdge_Basys3.srcs/sources_1/new/top_wrapper.v:79]
+WARNING: [Synth 8-7071] port 'RDY_data_valid' of module 'mkCapture' is unconnected for instance 'capture_inst' [D:/Digital Projects/StEdge_Basys3/StEdge_Basys3.srcs/sources_1/new/top_wrapper.v:79]
+WARNING: [Synth 8-7071] port 'RDY_frame_done' of module 'mkCapture' is unconnected for instance 'capture_inst' [D:/Digital Projects/StEdge_Basys3/StEdge_Basys3.srcs/sources_1/new/top_wrapper.v:79]
+WARNING: [Synth 8-7023] instance 'capture_inst' of module 'mkCapture' has 15 connections declared, but only 11 given [D:/Digital Projects/StEdge_Basys3/StEdge_Basys3.srcs/sources_1/new/top_wrapper.v:79]
+INFO: [Synth 8-6157] synthesizing module 'mkReadWriteController' [D:/StEdge/Sobel/verilog_out/mkReadWriteController.v:44]
+INFO: [Synth 8-6155] done synthesizing module 'mkReadWriteController' (0#1) [D:/StEdge/Sobel/verilog_out/mkReadWriteController.v:44]
+WARNING: [Synth 8-7071] port 'RDY_write_en' of module 'mkReadWriteController' is unconnected for instance 'controller' [D:/Digital Projects/StEdge_Basys3/StEdge_Basys3.srcs/sources_1/new/top_wrapper.v:94]
+WARNING: [Synth 8-7071] port 'RDY_read_en' of module 'mkReadWriteController' is unconnected for instance 'controller' [D:/Digital Projects/StEdge_Basys3/StEdge_Basys3.srcs/sources_1/new/top_wrapper.v:94]
+WARNING: [Synth 8-7071] port 'RDY_select' of module 'mkReadWriteController' is unconnected for instance 'controller' [D:/Digital Projects/StEdge_Basys3/StEdge_Basys3.srcs/sources_1/new/top_wrapper.v:94]
+WARNING: [Synth 8-7071] port 'state_info' of module 'mkReadWriteController' is unconnected for instance 'controller' [D:/Digital Projects/StEdge_Basys3/StEdge_Basys3.srcs/sources_1/new/top_wrapper.v:94]
+WARNING: [Synth 8-7071] port 'RDY_state_info' of module 'mkReadWriteController' is unconnected for instance 'controller' [D:/Digital Projects/StEdge_Basys3/StEdge_Basys3.srcs/sources_1/new/top_wrapper.v:94]
+WARNING: [Synth 8-7023] instance 'controller' of module 'mkReadWriteController' has 15 connections declared, but only 10 given [D:/Digital Projects/StEdge_Basys3/StEdge_Basys3.srcs/sources_1/new/top_wrapper.v:94]
+INFO: [Synth 8-6157] synthesizing module 'mkAddressMux' [D:/StEdge/Sobel/verilog_out/mkAddressMux.v:35]
+INFO: [Synth 8-6155] done synthesizing module 'mkAddressMux' (0#1) [D:/StEdge/Sobel/verilog_out/mkAddressMux.v:35]
+WARNING: [Synth 8-7071] port 'RDY_out' of module 'mkAddressMux' is unconnected for instance 'addr_mux' [D:/Digital Projects/StEdge_Basys3/StEdge_Basys3.srcs/sources_1/new/top_wrapper.v:103]
+WARNING: [Synth 8-7023] instance 'addr_mux' of module 'mkAddressMux' has 7 connections declared, but only 6 given [D:/Digital Projects/StEdge_Basys3/StEdge_Basys3.srcs/sources_1/new/top_wrapper.v:103]
+INFO: [Synth 8-6157] synthesizing module 'mkFrameBuffer' [D:/StEdge/Sobel/verilog_out/mkFrameBuffer.v:37]
+INFO: [Synth 8-6157] synthesizing module 'BRAM1' [D:/StEdge/Sobel/verilog_out/BRAM1.v:8]
+	Parameter PIPELINED bound to: 1'b0 
+	Parameter ADDR_WIDTH bound to: 17 - type: integer 
+	Parameter DATA_WIDTH bound to: 8 - type: integer 
+	Parameter MEMSIZE bound to: 18'b010010110000000000 
+INFO: [Synth 8-6155] done synthesizing module 'BRAM1' (0#1) [D:/StEdge/Sobel/verilog_out/BRAM1.v:8]
+INFO: [Synth 8-6157] synthesizing module 'RevertReg' [D:/StEdge/Sobel/verilog_out/RevertReg.v:7]
+	Parameter width bound to: 1 - type: integer 
+	Parameter init bound to: 1'b1 
+INFO: [Synth 8-6155] done synthesizing module 'RevertReg' (0#1) [D:/StEdge/Sobel/verilog_out/RevertReg.v:7]
+INFO: [Synth 8-6157] synthesizing module 'SizedFIFO' [D:/StEdge/Sobel/verilog_out/SizedFIFO0.v:22]
+	Parameter p1width bound to: 8 - type: integer 
+	Parameter p2depth bound to: 3 - type: integer 
+	Parameter p3cntr_width bound to: 1 - type: integer 
+	Parameter guarded bound to: 1'b0 
+INFO: [Synth 8-6155] done synthesizing module 'SizedFIFO' (0#1) [D:/StEdge/Sobel/verilog_out/SizedFIFO0.v:22]
+INFO: [Synth 8-6155] done synthesizing module 'mkFrameBuffer' (0#1) [D:/StEdge/Sobel/verilog_out/mkFrameBuffer.v:37]
+WARNING: [Synth 8-7071] port 'RDY_put' of module 'mkFrameBuffer' is unconnected for instance 'storage' [D:/Digital Projects/StEdge_Basys3/StEdge_Basys3.srcs/sources_1/new/top_wrapper.v:111]
+WARNING: [Synth 8-7071] port 'RDY_read' of module 'mkFrameBuffer' is unconnected for instance 'storage' [D:/Digital Projects/StEdge_Basys3/StEdge_Basys3.srcs/sources_1/new/top_wrapper.v:111]
+WARNING: [Synth 8-7023] instance 'storage' of module 'mkFrameBuffer' has 10 connections declared, but only 8 given [D:/Digital Projects/StEdge_Basys3/StEdge_Basys3.srcs/sources_1/new/top_wrapper.v:111]
+INFO: [Synth 8-6157] synthesizing module 'mkSobelStoch' [D:/StEdge/Sobel/verilog_out/mkSobelStoch.v:35]
+INFO: [Synth 8-6155] done synthesizing module 'mkSobelStoch' (0#1) [D:/StEdge/Sobel/verilog_out/mkSobelStoch.v:35]
+WARNING: [Synth 8-7071] port 'RDY_address' of module 'mkSobelStoch' is unconnected for instance 'sobel_engine' [D:/Digital Projects/StEdge_Basys3/StEdge_Basys3.srcs/sources_1/new/top_wrapper.v:121]
+WARNING: [Synth 8-7071] port 'RDY_pix_out' of module 'mkSobelStoch' is unconnected for instance 'sobel_engine' [D:/Digital Projects/StEdge_Basys3/StEdge_Basys3.srcs/sources_1/new/top_wrapper.v:121]
+WARNING: [Synth 8-7023] instance 'sobel_engine' of module 'mkSobelStoch' has 8 connections declared, but only 6 given [D:/Digital Projects/StEdge_Basys3/StEdge_Basys3.srcs/sources_1/new/top_wrapper.v:121]
+INFO: [Synth 8-6157] synthesizing module 'mkDataMux' [D:/StEdge/Sobel/verilog_out/mkDataMux.v:34]
+INFO: [Synth 8-6155] done synthesizing module 'mkDataMux' (0#1) [D:/StEdge/Sobel/verilog_out/mkDataMux.v:34]
+WARNING: [Synth 8-7071] port 'RDY_out' of module 'mkDataMux' is unconnected for instance 'video_gate' [D:/Digital Projects/StEdge_Basys3/StEdge_Basys3.srcs/sources_1/new/top_wrapper.v:128]
+WARNING: [Synth 8-7023] instance 'video_gate' of module 'mkDataMux' has 6 connections declared, but only 5 given [D:/Digital Projects/StEdge_Basys3/StEdge_Basys3.srcs/sources_1/new/top_wrapper.v:128]
+INFO: [Synth 8-6157] synthesizing module 'mkVgaDisplay' [D:/StEdge/Sobel/verilog_out/mkVgaDisplay.v:41]
+INFO: [Synth 8-6155] done synthesizing module 'mkVgaDisplay' (0#1) [D:/StEdge/Sobel/verilog_out/mkVgaDisplay.v:41]
+WARNING: [Synth 8-7071] port 'RDY_hsync' of module 'mkVgaDisplay' is unconnected for instance 'vga_driver' [D:/Digital Projects/StEdge_Basys3/StEdge_Basys3.srcs/sources_1/new/top_wrapper.v:135]
+WARNING: [Synth 8-7071] port 'RDY_vsync' of module 'mkVgaDisplay' is unconnected for instance 'vga_driver' [D:/Digital Projects/StEdge_Basys3/StEdge_Basys3.srcs/sources_1/new/top_wrapper.v:135]
+WARNING: [Synth 8-7071] port 'RDY_rgb' of module 'mkVgaDisplay' is unconnected for instance 'vga_driver' [D:/Digital Projects/StEdge_Basys3/StEdge_Basys3.srcs/sources_1/new/top_wrapper.v:135]
+WARNING: [Synth 8-7071] port 'RDY_address' of module 'mkVgaDisplay' is unconnected for instance 'vga_driver' [D:/Digital Projects/StEdge_Basys3/StEdge_Basys3.srcs/sources_1/new/top_wrapper.v:135]
+WARNING: [Synth 8-7071] port 'RDY_frame_done' of module 'mkVgaDisplay' is unconnected for instance 'vga_driver' [D:/Digital Projects/StEdge_Basys3/StEdge_Basys3.srcs/sources_1/new/top_wrapper.v:135]
+WARNING: [Synth 8-7023] instance 'vga_driver' of module 'mkVgaDisplay' has 13 connections declared, but only 8 given [D:/Digital Projects/StEdge_Basys3/StEdge_Basys3.srcs/sources_1/new/top_wrapper.v:135]
+INFO: [Synth 8-6155] done synthesizing module 'top_wrapper' (0#1) [D:/Digital Projects/StEdge_Basys3/StEdge_Basys3.srcs/sources_1/new/top_wrapper.v:22]
+WARNING: [Synth 8-6014] Unused sequential element DO_R2_reg was removed.  [D:/StEdge/Sobel/verilog_out/BRAM1.v:57]
+WARNING: [Synth 8-3917] design top_wrapper has port ov7670_pwdn driven by constant 0
+WARNING: [Synth 8-7129] Port rgb_data_in[7] in module mkVgaDisplay is either unconnected or has no load
+WARNING: [Synth 8-7129] Port rgb_data_in[6] in module mkVgaDisplay is either unconnected or has no load
+WARNING: [Synth 8-7129] Port rgb_data_in[5] in module mkVgaDisplay is either unconnected or has no load
+WARNING: [Synth 8-7129] Port rgb_data_in[4] in module mkVgaDisplay is either unconnected or has no load
+WARNING: [Synth 8-7129] Port CLK in module mkDataMux is either unconnected or has no load
+WARNING: [Synth 8-7129] Port RST_N in module mkDataMux is either unconnected or has no load
+WARNING: [Synth 8-7129] Port CLK in module RevertReg is either unconnected or has no load
+WARNING: [Synth 8-7129] Port D_IN[0] in module RevertReg is either unconnected or has no load
+WARNING: [Synth 8-7129] Port EN in module RevertReg is either unconnected or has no load
+WARNING: [Synth 8-7129] Port CLK in module mkAddressMux is either unconnected or has no load
+WARNING: [Synth 8-7129] Port RST_N in module mkAddressMux is either unconnected or has no load
+WARNING: [Synth 8-7129] Port CLK_pclk in module mkCapture is either unconnected or has no load
+WARNING: [Synth 8-7129] Port RST_N_rst in module mkCapture is either unconnected or has no load
+WARNING: [Synth 8-7129] Port CLK in module mkCameraResetClk is either unconnected or has no load
+WARNING: [Synth 8-7129] Port RST_N in module mkCameraResetClk is either unconnected or has no load
+---------------------------------------------------------------------------------
+Finished RTL Elaboration : Time (s): cpu = 00:00:10 ; elapsed = 00:00:11 . Memory (MB): peak = 1153.781 ; gain = 582.023
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:11 ; elapsed = 00:00:11 . Memory (MB): peak = 1153.781 ; gain = 582.023
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:11 ; elapsed = 00:00:11 . Memory (MB): peak = 1153.781 ; gain = 582.023
+---------------------------------------------------------------------------------
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.014 . Memory (MB): peak = 1153.781 ; gain = 0.000
+INFO: [Project 1-570] Preparing netlist for logic optimization
+
+Processing XDC Constraints
+Initializing timing engine
+Parsing XDC File [d:/Digital Projects/StEdge_Basys3/StEdge_Basys3.gen/sources_1/ip/clk_wiz_0/clk_wiz_0/clk_wiz_0_in_context.xdc] for cell 'clock_gen'
+Finished Parsing XDC File [d:/Digital Projects/StEdge_Basys3/StEdge_Basys3.gen/sources_1/ip/clk_wiz_0/clk_wiz_0/clk_wiz_0_in_context.xdc] for cell 'clock_gen'
+Parsing XDC File [D:/Digital Projects/StEdge_Basys3/StEdge_Basys3.srcs/constrs_1/new/const.xdc]
+Finished Parsing XDC File [D:/Digital Projects/StEdge_Basys3/StEdge_Basys3.srcs/constrs_1/new/const.xdc]
+INFO: [Project 1-236] Implementation specific constraints were found while reading constraint file [D:/Digital Projects/StEdge_Basys3/StEdge_Basys3.srcs/constrs_1/new/const.xdc]. These constraints will be ignored for synthesis but will be used in implementation. Impacted constraints are listed in the file [.Xil/top_wrapper_propImpl.xdc].
+Resolution: To avoid this warning, move constraints listed in [.Xil/top_wrapper_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
+Completed Processing XDC Constraints
+
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1245.785 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.006 . Memory (MB): peak = 1245.785 ; gain = 0.000
+---------------------------------------------------------------------------------
+Finished Constraint Validation : Time (s): cpu = 00:00:23 ; elapsed = 00:00:25 . Memory (MB): peak = 1245.785 ; gain = 674.027
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Loading Part and Timing Information
+---------------------------------------------------------------------------------
+Loading part: xc7a35tcpg236-1
+---------------------------------------------------------------------------------
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:23 ; elapsed = 00:00:25 . Memory (MB): peak = 1245.785 ; gain = 674.027
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying 'set_property' XDC Constraints
+---------------------------------------------------------------------------------
+Applied set_property IO_BUFFER_TYPE = NONE for clk_100mhz. (constraint file  {d:/Digital Projects/StEdge_Basys3/StEdge_Basys3.gen/sources_1/ip/clk_wiz_0/clk_wiz_0/clk_wiz_0_in_context.xdc}, line 4).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for clk_100mhz. (constraint file  {d:/Digital Projects/StEdge_Basys3/StEdge_Basys3.gen/sources_1/ip/clk_wiz_0/clk_wiz_0/clk_wiz_0_in_context.xdc}, line 5).
+Applied set_property KEEP_HIERARCHY = SOFT for clock_gen. (constraint file  auto generated constraint).
+---------------------------------------------------------------------------------
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:24 ; elapsed = 00:00:25 . Memory (MB): peak = 1245.785 ; gain = 674.027
+---------------------------------------------------------------------------------
+INFO: [Synth 8-802] inferred FSM for state register 'state_reg' in module 'mkReadWriteController'
+INFO: [Synth 8-802] inferred FSM for state register 'state_reg' in module 'mkSobelStoch'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                 iSTATE1 |                            10000 |                              000
+                  iSTATE |                            01000 |                              100
+*
+                 iSTATE2 |                            00001 |                              001
+                 iSTATE3 |                            00010 |                              010
+                 iSTATE0 |                            00100 |                              011
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'state_reg' using encoding 'one-hot' in module 'mkReadWriteController'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                  iSTATE |                             0010 |                               00
+                 iSTATE0 |                             1000 |                               01
+                 iSTATE1 |                             0100 |                               10
+                 iSTATE2 |                             0001 |                               11
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'state_reg' using encoding 'one-hot' in module 'mkSobelStoch'
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:24 ; elapsed = 00:00:26 . Memory (MB): peak = 1245.785 ; gain = 674.027
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start RTL Component Statistics 
+---------------------------------------------------------------------------------
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input   10 Bit       Adders := 8     
+	  16 Input    5 Bit       Adders := 1     
+	   3 Input    3 Bit       Adders := 1     
+	   2 Input    1 Bit       Adders := 3     
++---XORs : 
+	   2 Input      8 Bit         XORs := 2     
+	   2 Input      7 Bit         XORs := 2     
+	   2 Input      3 Bit         XORs := 1     
++---Registers : 
+	               17 Bit    Registers := 1     
+	               10 Bit    Registers := 6     
+	                9 Bit    Registers := 1     
+	                8 Bit    Registers := 13    
+	                3 Bit    Registers := 1     
+	                2 Bit    Registers := 1     
+	                1 Bit    Registers := 8     
++---RAMs : 
+	             600K Bit	(76800 X 8 bit)          RAMs := 1     
+	               16 Bit	(2 X 8 bit)          RAMs := 1     
++---Muxes : 
+	   2 Input   17 Bit        Muxes := 1     
+	   2 Input   12 Bit        Muxes := 1     
+	   2 Input    9 Bit        Muxes := 2     
+	   2 Input    8 Bit        Muxes := 24    
+	   4 Input    5 Bit        Muxes := 1     
+	   5 Input    3 Bit        Muxes := 1     
+	   2 Input    2 Bit        Muxes := 5     
+	   4 Input    2 Bit        Muxes := 1     
+	   2 Input    1 Bit        Muxes := 6     
+---------------------------------------------------------------------------------
+Finished RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Part Resource Summary
+---------------------------------------------------------------------------------
+Part Resources:
+DSPs: 90 (col length:60)
+BRAMs: 100 (col length: RAMB18 60 RAMB36 30)
+---------------------------------------------------------------------------------
+Finished Part Resource Summary
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Cross Boundary and Area Optimization
+---------------------------------------------------------------------------------
+WARNING: [Synth 8-7080] Parallel synthesis criteria is not met
+WARNING: [Synth 8-3917] design top_wrapper has port ov7670_pwdn driven by constant 0
+WARNING: [Synth 8-7129] Port ov7670_pclk in module top_wrapper is either unconnected or has no load
+---------------------------------------------------------------------------------
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:29 ; elapsed = 00:00:31 . Memory (MB): peak = 1245.785 ; gain = 674.027
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start ROM, RAM, DSP, Shift Register and Retiming Reporting
+---------------------------------------------------------------------------------
+
+Block RAM: Preliminary Mapping Report (see note below)
++------------+------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+
+|Module Name | RTL Object | PORT A (Depth x Width) | W | R | PORT B (Depth x Width) | W | R | Ports driving FF | RAMB18 | RAMB36 | 
++------------+------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+
+|BRAM1:      | RAM_reg    | 75 K x 8(WRITE_FIRST)  | W | R |                        |   |   | Port A           | 0      | 24     | 
++------------+------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+
+
+Note: The table above is a preliminary report that shows the Block RAMs at the current stage of the synthesis flow. Some Block RAMs may be reimplemented as non Block RAM primitives later in the synthesis flow. Multiple instantiated Block RAMs are reported only once. 
+---------------------------------------------------------------------------------
+Finished ROM, RAM, DSP, Shift Register and Retiming Reporting
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying XDC Timing Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:39 ; elapsed = 00:00:41 . Memory (MB): peak = 1355.473 ; gain = 783.715
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Timing Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Timing Optimization : Time (s): cpu = 00:00:40 ; elapsed = 00:00:42 . Memory (MB): peak = 1401.492 ; gain = 829.734
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start ROM, RAM, DSP, Shift Register and Retiming Reporting
+---------------------------------------------------------------------------------
+
+Block RAM: Final Mapping Report
++------------+------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+
+|Module Name | RTL Object | PORT A (Depth x Width) | W | R | PORT B (Depth x Width) | W | R | Ports driving FF | RAMB18 | RAMB36 | 
++------------+------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+
+|BRAM1:      | RAM_reg    | 75 K x 8(WRITE_FIRST)  | W | R |                        |   |   | Port A           | 0      | 24     | 
++------------+------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+
+
+---------------------------------------------------------------------------------
+Finished ROM, RAM, DSP, Shift Register and Retiming Reporting
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Technology Mapping
+---------------------------------------------------------------------------------
+INFO: [Synth 8-7052] The timing for the instance storage/mem_memory/RAM_reg_1_5 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance storage/mem_memory/RAM_reg_1_6 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance storage/mem_memory/RAM_reg_1_7 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance storage/mem_memory/RAM_reg_1_5__0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance storage/mem_memory/RAM_reg_1_6__0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance storage/mem_memory/RAM_reg_1_7__0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+---------------------------------------------------------------------------------
+Finished Technology Mapping : Time (s): cpu = 00:00:40 ; elapsed = 00:00:42 . Memory (MB): peak = 1401.492 ; gain = 829.734
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Final Netlist Cleanup
+---------------------------------------------------------------------------------
+CRITICAL WARNING: [Synth 8-4442] BlackBox module clock_gen has unconnected pin reset
+---------------------------------------------------------------------------------
+Finished IO Insertion : Time (s): cpu = 00:00:45 ; elapsed = 00:00:48 . Memory (MB): peak = 1586.582 ; gain = 1014.824
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Instances
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:45 ; elapsed = 00:00:48 . Memory (MB): peak = 1586.582 ; gain = 1014.824
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Rebuilding User Hierarchy
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:45 ; elapsed = 00:00:48 . Memory (MB): peak = 1586.582 ; gain = 1014.824
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Ports
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:45 ; elapsed = 00:00:48 . Memory (MB): peak = 1586.582 ; gain = 1014.824
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:46 ; elapsed = 00:00:48 . Memory (MB): peak = 1586.613 ; gain = 1014.855
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Nets
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:46 ; elapsed = 00:00:48 . Memory (MB): peak = 1586.613 ; gain = 1014.855
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Writing Synthesis Report
+---------------------------------------------------------------------------------
+
+Report BlackBoxes: 
++------+--------------+----------+
+|      |BlackBox name |Instances |
++------+--------------+----------+
+|1     |clk_wiz_0     |         1|
++------+--------------+----------+
+
+Report Cell Usage: 
++------+---------+------+
+|      |Cell     |Count |
++------+---------+------+
+|1     |clk_wiz  |     1|
+|2     |CARRY4   |    11|
+|3     |LUT1     |     7|
+|4     |LUT2     |    21|
+|5     |LUT3     |    26|
+|6     |LUT4     |    52|
+|7     |LUT5     |    47|
+|8     |LUT6     |    72|
+|9     |RAMB36E1 |     9|
+|12    |FDRE     |   148|
+|13    |FDSE     |    21|
+|14    |IBUF     |     7|
+|15    |OBUF     |    17|
++------+---------+------+
+---------------------------------------------------------------------------------
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:46 ; elapsed = 00:00:48 . Memory (MB): peak = 1586.613 ; gain = 1014.855
+---------------------------------------------------------------------------------
+Synthesis finished with 0 errors, 1 critical warnings and 3 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:32 ; elapsed = 00:00:45 . Memory (MB): peak = 1586.613 ; gain = 922.852
+Synthesis Optimization Complete : Time (s): cpu = 00:00:46 ; elapsed = 00:00:48 . Memory (MB): peak = 1586.613 ; gain = 1014.855
+INFO: [Project 1-571] Translating synthesized netlist
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.007 . Memory (MB): peak = 1586.613 ; gain = 0.000
+INFO: [Netlist 29-17] Analyzing 20 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1586.613 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Synth Design complete | Checksum: 505dcec8
+INFO: [Common 17-83] Releasing license: Synthesis
+53 Infos, 54 Warnings, 1 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:00:51 ; elapsed = 00:00:56 . Memory (MB): peak = 1586.613 ; gain = 1205.477
+INFO: [runtcl-6] Synthesis results are not added to the cache due to CRITICAL_WARNING
+Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.002 . Memory (MB): peak = 1586.613 ; gain = 0.000
+INFO: [Common 17-1381] The checkpoint 'D:/GIT REPO/Stochastic Edge Detector/Sobel/StEdge_Sobel_Basys3/StEdge_Sobel_Basys3.runs/synth_1/top_wrapper.dcp' has been generated.
+INFO: [Vivado 12-24828] Executing command : report_utilization -file top_wrapper_utilization_synth.rpt -pb top_wrapper_utilization_synth.pb
+INFO: [Common 17-206] Exiting Vivado at Mon May 18 22:04:08 2026...

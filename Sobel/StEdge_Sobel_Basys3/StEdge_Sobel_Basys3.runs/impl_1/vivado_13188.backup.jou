@@ -1,0 +1,24 @@
+#-----------------------------------------------------------
+# Vivado v2024.2 (64-bit)
+# SW Build 5239630 on Fri Nov 08 22:35:27 MST 2024
+# IP Build 5239520 on Sun Nov 10 16:12:51 MST 2024
+# SharedData Build 5239561 on Fri Nov 08 14:39:27 MST 2024
+# Start of session at: Mon May 18 22:04:28 2026
+# Process ID         : 13188
+# Current directory  : D:/GIT REPO/Stochastic Edge Detector/Sobel/StEdge_Sobel_Basys3/StEdge_Sobel_Basys3.runs/impl_1
+# Command line       : vivado.exe -log top_wrapper.vdi -applog -product Vivado -messageDb vivado.pb -mode batch -source top_wrapper.tcl -notrace
+# Log file           : D:/GIT REPO/Stochastic Edge Detector/Sobel/StEdge_Sobel_Basys3/StEdge_Sobel_Basys3.runs/impl_1/top_wrapper.vdi
+# Journal file       : D:/GIT REPO/Stochastic Edge Detector/Sobel/StEdge_Sobel_Basys3/StEdge_Sobel_Basys3.runs/impl_1\vivado.jou
+# Running On         : LAPTOP-SRINJAY
+# Platform           : Windows Server 2016 or Windows 10
+# Operating System   : 26200
+# Processor Detail   : 12th Gen Intel(R) Core(TM) i5-12450H
+# CPU Frequency      : 2496 MHz
+# CPU Physical cores : 8
+# CPU Logical cores  : 12
+# Host memory        : 16802 MB
+# Swap memory        : 7548 MB
+# Total Virtual      : 24351 MB
+# Available Virtual  : 2974 MB
+#-----------------------------------------------------------
+source top_wrapper.tcl -notrace
