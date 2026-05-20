@@ -3,7 +3,8 @@
 [![Board](https://img.shields.io/badge/FPGA-Xilinx%20Artix--7-orange)](https://www.xilinx.com/products/silicon-devices/fpga/artix-7.html)
 [![Target](https://img.shields.io/badge/Hardware-Digilent%20Basys%203-blue)](https://digilent.com/reference/programmable-logic/basys-3/start)
 [![Toolchain](https://img.shields.io/badge/Vivado-2024.2-red)](https://www.xilinx.com/products/design-tools/vivado.html)
-
+[![Compiler](https://img.shields.io/badge/HDL-Bluespec%20SystemVerilog-green)](https://github.com/B-Lang-org/bsc)
+[![Language](https://img.shields.io/badge/Language-Verilog-black)](https://en.wikipedia.org/wiki/Verilog)
 StEdge is a high-performance, real-time edge-detection hardware accelerator operating natively within the **Stochastic Computing (SC)** domain. Built and optimized for the Digilent Basys 3 development board, this architecture replaces resource-heavy conventional gradient arithmetic with hardware-efficient XOR-based subtraction and a deterministic bitstream-concatenation adder tree. 
 
 Both Sobel and Prewitt operators are capable of running within a tight **100 MHz clock domain**, streaming **30 FPS video** from an OV7670 camera module directly to a standard VGA monitor without the need for external frame-buffer hardware or processor intervention.
