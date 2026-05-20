@@ -53,15 +53,16 @@ The following metrics were captured post-implementation in Vivado 2024.2, target
 
 The synthesizable Verilog modules provided in this repository are compiled via the Bluespec Compiler (version 2026.01). They represent a modular, highly decoupled stream processing pipeline:
 
-* **`BRAM1.v`**: A parameterized single-ported Block RAM wrapper featuring configurable memory limits, array sizing, and optional dual-stage output pipelining registers.
-* **`mkCaptureStarter.v`**: A high-speed synchronization block that safely handles frame boundaries by latching onto the rising edges of camera synchronization pulses.
-* **`mkCapture.v`**: The front-end sensor interface that extracts 8-bit active Luminance ($Y$) channels from incoming camera data lines while managing coordinate counting for active frame streaming dimensions up to standard QVGA/VGA window ranges.
-* **`mkFrameBuffer.v`**: Implements a dedicated memory controller adapter wrapping the underlying BRAM1 storage grid, ensuring consistent read/write page boundaries.
-* **`mkAddressMux.v` & `mkDataMux.v`**: High-speed, combinational routing blocks that multiplex 17-bit memory addressing channels and 8-bit wide streams between capture operations and live filter processing windows.
-* **`mkReadWriteController.v`**: A centralized arbitration finite state machine (FSM) that coordinates read/write window assignments, checking state signals between capture completion and screen sync periods.
-* **`mkSobelStoch.v`**: The stochastic accelerator core. This block shifts image bytes into a localized spatial tracking matrix (`o_0_0` through `o_2_2`), translates standard pixel words to stochastic bitstreams, executes the logic-gate filtering, and handles the output accumulation scaling.
-* **`mkVgaDisplay.v`**: Standard horizontal and vertical sync timing controller generating standard 640×480 @ 60 Hz scanning signals and calculating accurate active matrix address offsets.
-
+* **`BRAM1.v`**: A parameterized single-ported Block RAM wrapper featuring configurable memory limits (`MEMSIZE`), array sizing (`ADDR_WIDTH`, `DATA_WIDTH`), and optional dual-stage output pipelining registers (`PIPELINED`).
+* **`mkCameraResetClk.v`**: A clock domain and reset synchronization block that receives an active-high reset signal (`camera_reset_crst`) and drives an inverted camera hardware reset control line.
+* **`mkCaptureStarter.v`**: A high-speed synchronization block that safely handles frame boundaries by latching onto camera synchronization pulses (`vsync`). It generates a localized `vsync_detected` signal alongside a synchronized capture reset pulse.
+* **`mkCapture.v`**: The front-end sensor interface that extracts incoming 8-bit camera data (`d_in`) while managing coordinate counting for active frame streaming dimensions up to a QVGA window range (320×240). It outputs the active Luminance data, a 17-bit calculated memory address, and downstream validation signals.
+* **`mkFrameBuffer.v`**: Implements a dedicated memory controller adapter wrapping the underlying `BRAM1` storage grid. It manages initialized read and write operations across a memory size of 76,800 to accommodate the active pixel payload.
+* **`mkAddressMux.v` & `mkDataMux.v`**: High-speed, combinational routing blocks. `mkAddressMux.v` multiplexes 17-bit memory addressing channels (`out_rd_add` and `out_wr_add`) based on write-enable signals. `mkDataMux.v` routes 8-bit wide streams or zeroes them out depending on the active select signal.
+* **`mkReadWriteController.v`**: A centralized arbitration finite state machine (FSM) spanning states 0 through 4. It evaluates status flags—such as `writing_done`, `display_done`, `video_on`, and `data_valid`—to safely coordinate `write_en` and `read_en` assignments between capture completion and screen sync periods.
+* **`mkSobelStoch.v`**: The stochastic accelerator core. This block shifts image bytes into a localized spatial tracking matrix utilizing individual registers `o_0_0` through `o_2_2`. It processes the 8-bit input stream, executes the internal arithmetic filtering logic, and outputs an 8-bit filtered pixel payload (`pix_out`).
+* **`mkVgaDisplay.v`**: Standard timing controller generating `hsync` and `vsync` signals. It tracks horizontal counts up to 799 and vertical counts up to 524 to lock into a 640×480 @ 60 Hz scanning standard. It outputs a 12-bit RGB signal by replicating the incoming lower 4 bits of filtered data across all color channels.
+  
 ---
 
 ## 🔌 Hardware Setup & Pin Mapping
@@ -70,23 +71,26 @@ The synthesizable Verilog modules provided in this repository are compiled via t
 * **FPGA Board:** Digilent Basys 3 (Artix-7 `xc7a35tcpg236-1`).
 * **Camera Sensor:** OV7670 (Configured for 8-bit YUV422 output, raw variant without onboard FIFO).
 * **Display:** Any standard VGA monitor capable of accepting 640×480 @ 60 Hz timing dynamics.
-* **Interconnects:** ~20 Pmod jumper cables.
+* **Interconnects:** Standard Pmod jumper cables.
 
 ### Board-Side Wiring Configuration (`const.xdc`)
 
-| Peripheral Device | Signal Port Name | Basys 3 Package Pin Location | Notes / Extension Port |
+| Peripheral Device | Signal Port Name | Basys 3 Package Pin | Notes / Extension Port |
 | :--- | :--- | :--- | :--- |
-| **OV7670 Data** | `D0` .. `D7` | A14, A16, B15, B16, A15, A17, C15, C16 | Connected to Pmod JB |
-| **OV7670 Clocks** | `PCLK` | P18 | Connected to Pmod JC |
-| | `XCLK` | M19 | 24 MHz driven from System Clock |
-| **OV7670 Sync** | `VSYNC` | L17 | Hardware Frame Sync |
-| | `HREF` | M18 | Line Data Window Validation |
-| | `RSTn` | N17 | Camera Hardware Reset Control |
-| **VGA Output** | `R[3:0]` | G19, H19, J19, N19 | Wired to On-board Resistor DAC |
-| | `G[3:0]` | J17, H17, G17, D17 | Greyscale output replicates... |
-| | `B[3:0]` | N18, L18, K18, J18 | ...lower 4 bits of filtered data |
-| | `HSYNC` / `VSYNC` | P19 / R19 | Monitor sync drives |
-| **On-board SW** | `SW0` / `SW1` / `SW2` | V17 / V16 / W16 | System Reset / Write En / Camera Reset |
+| **System Clock** | `clk_100mhz` | W5 | 100 MHz Onboard Oscillator |
+| **OV7670 Camera (Pmod JA)** | `ov7670_pwdn` | J1 | Power Down Control |
+| | `ov7670_reset` | H1 | Hardware Reset |
+| | `ov7670_data[5:0]` | G3, G2, H2, J2, K2, L2 | Lower 6 bits of image data |
+| **OV7670 Camera (Pmod JB)** | `ov7670_data[7:6]` | A15, A14 | Upper 2 bits of image data |
+| | `ov7670_xclk` | A16 | System clock to camera |
+| | `ov7670_pclk` | B15 | Pixel clock from camera |
+| | `ov7670_hsync` | A17 | Horizontal Sync |
+| | `ov7670_vsync` | C15 | Vertical Sync |
+| **VGA Display** | `vga_rgb[11:0]` | W15, K18, L18, W13, W14, G17, H17, U15, U16, J19, H19, V13 | 12-bit RGB color output array |
+| | `vga_hsync` | P19 | Monitor Horizontal Sync |
+| | `vga_vsync` | R19 | Monitor Vertical Sync |
+| **On-board Controls** | `sw0` | V14 | Slide Switch 0 |
+| | `btnC` | U14 | Center Button |
 
 > **💡 Sensor Initialization Note:** Register initialization for the OV7670 sensor (enabling auto-white-balance, forcing YUV422 format scaling, and configuring window ranges) is decoupled from this RTL design. Pre-program the camera's registers over an I²C link using an external MCU prior to enabling the FPGA pipeline, or deploy an independent I²C master on unassigned Pmod pins.
 
@@ -102,14 +106,20 @@ The synthesizable Verilog modules provided in this repository are compiled via t
 
 1. Initialize a new Vivado project targeting the **Basys 3** profile.
 2. Select your pipeline type and add the corresponding sources into your workspace:
-   * Add all source Verilog text documents inside `Sobel/verilog_out/` along with `Sobel/constraints/const.xdc`.
+   * Add all synthesizable Verilog files (`BRAM1.v` and all `mk*.v` files) inside `Sobel/verilog_out/` along with `Sobel/constraints/const.xdc`.
 3. Select **Create Block Design** and designate the structure name exactly as `design_1` *(this is vital for binding constraints accurately)*.
-4. Right-click the block canvas, choose **Add Module**, and add all the structural project blocks: `camera_reset_clk`, `capture_starter`, `capture`, `frame_buffer`, `address_mux`, `data_MUX`, `vga_display`, `sobel_stoch`, and `read_write_controller`.
-5. Insert a **Clocking Wizard IP** core. Set inputs to match the 100 MHz onboard oscillator (`W5`), and configure two discrete clock outputs:
-   * `clk_out1`: **100 MHz** (Feeds the system processing loop).
-   * `clk_out2`: **25 MHz** (Feeds the VGA pixel clock engine).
-6. Connect the signals cleanly across ports, map external connections out to their designated board boundaries, run **Validate Design**, and generate the top-level HDL wrapper (`design_1_wrapper.v`).
-7. Execute **Synthesis**, run **Implementation**, and generate your target bitstream file!
+4. Right-click the block canvas, choose **Add Module**, and add the core structural project blocks: `mkCameraResetClk`, `mkCaptureStarter`, `mkCapture`, `mkFrameBuffer`, `mkAddressMux`, `mkDataMux`, `mkVgaDisplay`, `mkSobelStoch`, and `mkReadWriteController`. *(Note: `BRAM1` will be automatically inferred in the hierarchy under `mkFrameBuffer`)*.
+5. Insert a **Clocking Wizard IP** core. Set the primary input clock to match the 100 MHz onboard oscillator, and configure the discrete clock outputs required by the pipeline:
+   * `clk_out1`: **100 MHz** (Feeds the core system processing loop and memory).
+   * `clk_out2`: **25 MHz** (Feeds the VGA pixel clock engine for `mkVgaDisplay`).
+   * `clk_out3`: **24 MHz** (Feeds the `ov7670_xclk` hardware requirement for the camera sensor).
+6. Wire the internal signals across the module ports. When creating external ports (Ctrl+K), you **must** name them exactly as they appear in the `const.xdc` file to ensure proper routing:
+   * **System/Control:** `clk_100mhz`, `sw0`, `btnC`
+   * **VGA Out:** `vga_rgb[11:0]`, `vga_hsync`, `vga_vsync`
+   * **Camera In:** `ov7670_pwdn`, `ov7670_reset`, `ov7670_xclk`, `ov7670_pclk`, `ov7670_hsync`, `ov7670_vsync`, `ov7670_data[7:0]`
+7. Run **Validate Design** (F6) to ensure there are no hanging nets.
+8. Right-click your block design in the Sources pane, select **Create HDL Wrapper**, and let Vivado manage it. 
+9. Execute **Synthesis**, run **Implementation**, and generate your target bitstream file!
 
 ---
 
