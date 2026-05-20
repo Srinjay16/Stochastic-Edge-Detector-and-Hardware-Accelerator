@@ -22,12 +22,6 @@ When synthesized and implemented against a standard deterministic baseline on th
 
 ---
 
-## 📽️ Hardware Demo
-The real-time operational video captures showing live sensor processing can be accessed here:
-👉 [Watch the StEdge Demo Videos on Google Drive](https://drive.google.com/drive/folders/1ev4mEHUn8ps4adxoBAxjehTk1-IdUQ-h)
-
----
-
 ## 📂 Repository Layout
 
 The repository contains two parallel, structural directories designed with identical top-level interfaces, VGA timing matrix blocks, and BRAM structures. The core algorithmic variance is self-contained within the XOR / concatenation layer inside the stochastic core.
